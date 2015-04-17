@@ -105,12 +105,12 @@ public class uteMassBuildEngine : MonoBehaviour {
 			isItFirst = false;
 
 			startPosition = obj.transform.position;
-			newTiles.Add(new Tile(startPosition,obj.transform.localScale,obj.GetComponent<Collider>()));
+			newTiles.Add(new Tile(startPosition,obj.transform.localScale,obj.collider));
 
 			if(mDummy)
 			{
 				GameObject newDummy = (GameObject) Instantiate(mDummy,startPosition+new Vector3(0,0.03f,0),obj.transform.rotation);
-				newDummy.transform.localScale = obj.transform.localScale+obj.GetComponent<Collider>().bounds.size;
+				newDummy.transform.localScale = obj.transform.localScale+obj.collider.bounds.size;
 
 				if(newDummy.transform.localScale.y<0.5f)
 				{
@@ -198,8 +198,8 @@ public class uteMassBuildEngine : MonoBehaviour {
 
 				if(!refresh)
 				{
-					Xfill = (int) (Mathf.Abs(Xdistance)/obj.GetComponent<Collider>().bounds.size.x);
-					Zfill = (int) (Mathf.Abs(Zdistance)/obj.GetComponent<Collider>().bounds.size.z);
+					Xfill = (int) (Mathf.Abs(Xdistance)/obj.collider.bounds.size.x);
+					Zfill = (int) (Mathf.Abs(Zdistance)/obj.collider.bounds.size.z);
 					lastXfill = Xfill;
 					lastZfill = Zfill;
 				}
@@ -248,26 +248,26 @@ public class uteMassBuildEngine : MonoBehaviour {
 						{
 							Vector3 position = Vector3.zero;
 
-							float addPosY = (float)k * obj.GetComponent<Collider>().bounds.size.y;
+							float addPosY = (float)k * obj.collider.bounds.size.y;
 
 							if(pM.Equals("--"))
 							{
-								position = new Vector3(startPosition.x-(obj.GetComponent<Collider>().bounds.size.x*i),obj.transform.position.y,startPosition.z-(obj.GetComponent<Collider>().bounds.size.z*j));
+								position = new Vector3(startPosition.x-(obj.collider.bounds.size.x*i),obj.transform.position.y,startPosition.z-(obj.collider.bounds.size.z*j));
 							}
 							else if(pM.Equals("++"))
 							{
-								position = new Vector3(startPosition.x+(obj.GetComponent<Collider>().bounds.size.x*i),obj.transform.position.y,startPosition.z+(obj.GetComponent<Collider>().bounds.size.z*j));
+								position = new Vector3(startPosition.x+(obj.collider.bounds.size.x*i),obj.transform.position.y,startPosition.z+(obj.collider.bounds.size.z*j));
 							}
 							else if(pM.Equals("-+"))
 							{
-								position = new Vector3(startPosition.x-(obj.GetComponent<Collider>().bounds.size.x*i),obj.transform.position.y,startPosition.z+(obj.GetComponent<Collider>().bounds.size.z*j));
+								position = new Vector3(startPosition.x-(obj.collider.bounds.size.x*i),obj.transform.position.y,startPosition.z+(obj.collider.bounds.size.z*j));
 							}
 							else if(pM.Equals("+-"))
 							{
-								position = new Vector3(startPosition.x+(obj.GetComponent<Collider>().bounds.size.x*i),obj.transform.position.y,startPosition.z-(obj.GetComponent<Collider>().bounds.size.z*j));
+								position = new Vector3(startPosition.x+(obj.collider.bounds.size.x*i),obj.transform.position.y,startPosition.z-(obj.collider.bounds.size.z*j));
 							}
 
-							newTiles.Add(new Tile(position+new Vector3(0,addPosY,0),obj.transform.localScale,obj.GetComponent<Collider>()));
+							newTiles.Add(new Tile(position+new Vector3(0,addPosY,0),obj.transform.localScale,obj.collider));
 
 							if(mDummy)
 							{
@@ -276,14 +276,14 @@ public class uteMassBuildEngine : MonoBehaviour {
 
 								for(int m=0;m<mrs.Length;m++)
 								{
-									mrs[m].GetComponent<Renderer>().material = mDummyMat;
+									mrs[m].renderer.material = mDummyMat;
 								}
 
 								SkinnedMeshRenderer[] ssmrs = mDummy.GetComponentsInChildren<SkinnedMeshRenderer>();
 
 								for(int sm=0;sm<ssmrs.Length;sm++)
 								{
-									ssmrs[sm].GetComponent<Renderer>().material = mDummyMat;
+									ssmrs[sm].renderer.material = mDummyMat;
 								}
 
 								newDummy.transform.localScale = obj.transform.localScale;

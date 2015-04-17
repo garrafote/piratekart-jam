@@ -123,7 +123,7 @@ public class MeshCombineUtility {
 		foreach( MeshInstance combine in combines )
 		{
 			if (combine.mesh)
-				Copy(combine.mesh.vertexCount, combine.mesh.uv2, uv1, ref offset);
+				Copy(combine.mesh.vertexCount, combine.mesh.uv1, uv1, ref offset);
 		}
 		
 		offset=0;
@@ -200,7 +200,7 @@ public class MeshCombineUtility {
 		mesh.normals = normals;
 		mesh.colors = colors;
 		mesh.uv = uv;
-		mesh.uv2 = uv1;
+		mesh.uv1 = uv1;
 		mesh.tangents = tangents;
 		if (generateStrips)
 			#if UNITY_4_2 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_4_8 || UNITY_4_9

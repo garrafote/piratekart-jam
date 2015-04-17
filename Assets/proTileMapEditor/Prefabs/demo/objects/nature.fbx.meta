@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 2029a8c392fed4ef69f3c1e7aab3d03a
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: grass_1
     100002: grass_2
@@ -63,13 +63,11 @@ ModelImporter:
     generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
-    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -92,5 +90,3 @@ ModelImporter:
   animationType: 2
   additionalBone: 1
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 

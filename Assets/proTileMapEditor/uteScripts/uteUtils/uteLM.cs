@@ -72,7 +72,7 @@ public class uteLM : MonoBehaviour {
 					behindGO.layer = 0;
 					behindGO.transform.position = new Vector3(pX,pY,pZ);
 					behindGO.transform.localEulerAngles = new Vector3(rX,rY,rZ) + tGO.transform.localEulerAngles;
-					behindGO.GetComponent<Collider>().isTrigger = false;
+					behindGO.collider.isTrigger = false;
 					uteTagObject uTO = behindGO.AddComponent<uteTagObject>();
 					uTO.objGUID = guid;
 					uTO.layerName = layerName;

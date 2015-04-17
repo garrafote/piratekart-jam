@@ -77,7 +77,7 @@ public class uteTileConnectionsEngine : MonoBehaviour {
 			Vector3 lastObjectPos = ((Tile) newTiles[newTiles.Count-1]).pos;
 			float distance = Vector2.Distance(new Vector2(obj.transform.position.x,obj.transform.position.z),new Vector2(lastObjectPos.x,lastObjectPos.z));
 
-			if(distance<obj.GetComponent<Collider>().bounds.size.x||Mathf.Abs(lastObjectPos.y-obj.transform.position.y)>0.05f)
+			if(distance<obj.collider.bounds.size.x||Mathf.Abs(lastObjectPos.y-obj.transform.position.y)>0.05f)
 			{
 				isGoodToGo = false;
 			}
@@ -88,7 +88,7 @@ public class uteTileConnectionsEngine : MonoBehaviour {
 			newTiles.Add(new Tile(obj.transform.position,obj.transform.localScale,obj.GetComponent<BoxCollider>(),0));
 
 			GameObject newDummy = (GameObject) Instantiate(tcDummy,obj.transform.position+(new Vector3(0,obj.GetComponent<BoxCollider>().center.y,0)),obj.transform.rotation);
-			newDummy.transform.localScale = obj.GetComponent<Collider>().bounds.size;//new Vector3(obj.transform.collider.bounds.size.x,1.0f,obj.transform.collider.bounds.size.z);// - (new Vector3(0.0f,0.0f+(obj.transform.collider.bounds.center.y*obj.transform.localScale.y),0.0f));//new Vector3(obj.transform.localScale.x,0.1f,obj.transform.localScale.z);
+			newDummy.transform.localScale = obj.collider.bounds.size;//new Vector3(obj.transform.collider.bounds.size.x,1.0f,obj.transform.collider.bounds.size.z);// - (new Vector3(0.0f,0.0f+(obj.transform.collider.bounds.center.y*obj.transform.localScale.y),0.0f));//new Vector3(obj.transform.localScale.x,0.1f,obj.transform.localScale.z);
 			BoxCollider coll = (BoxCollider) newDummy.AddComponent<BoxCollider>();
 			coll.size += new Vector3(-0.01f,-0.01f,-0.01f);
 			newDummy.AddComponent<uteDummyTag>();

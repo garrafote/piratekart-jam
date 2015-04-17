@@ -90,7 +90,7 @@ public class uteCombineChildren : MonoBehaviour {
 		for (int i=0;i<filters.Length;i++)
 		{
 			MeshFilter filter = (MeshFilter)filters[i];
-			Renderer curRenderer  = filters[i].GetComponent<Renderer>();
+			Renderer curRenderer  = filters[i].renderer;
 			MeshCombineUtility.MeshInstance instance = new MeshCombineUtility.MeshInstance ();
 			instance.mesh = filter.sharedMesh;
 
@@ -162,9 +162,9 @@ public class uteCombineChildren : MonoBehaviour {
 				go.transform.localRotation = Quaternion.identity;
 				go.transform.localPosition = Vector3.zero;
 				go.AddComponent(typeof(MeshFilter));
-				go.AddComponent<MeshRenderer>();
+				go.AddComponent("MeshRenderer");
 				go.isStatic = true;
-				go.GetComponent<Renderer>().material = (Material)de.Key;
+				go.renderer.material = (Material)de.Key;
 				MeshFilter filter = (MeshFilter)go.GetComponent(typeof(MeshFilter));
 				filter.mesh = MeshCombineUtility.Combine(instances, generateTriangleStrips);
 

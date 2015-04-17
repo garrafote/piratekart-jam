@@ -10,7 +10,7 @@ public class BuildUtePrefabs : Editor {
     public static void BuildTilePrefabs()
     {
         // prevent someone from calling this by mistake;
-        return;
+        //return;
 
         var assets = AssetDatabase.FindAssets("", new[] { tilePath }).Distinct();
 
@@ -23,7 +23,7 @@ public class BuildUtePrefabs : Editor {
             var container = new GameObject(asset.name);
             var col = container.AddComponent<BoxCollider>();
 
-            var temp = GameObject.Instantiate<GameObject>(tempPrefab);
+            var temp = (GameObject)GameObject.Instantiate(tempPrefab);
             temp.transform.localScale = Vector3.one * .125f;
             temp.transform.parent = container.transform;
             var mf = temp.GetComponent<MeshFilter>();

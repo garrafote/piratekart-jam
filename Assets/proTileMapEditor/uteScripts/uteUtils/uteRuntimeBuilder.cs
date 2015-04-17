@@ -457,10 +457,10 @@ public class uteRuntimeBuilder : MonoBehaviour {
 		SkinnedMeshRenderer[] smfs_arr = (SkinnedMeshRenderer[]) obj.GetComponentsInChildren<SkinnedMeshRenderer>();
 		Transform[] trms = (Transform[]) obj.GetComponentsInChildren<Transform>();
 		
-		if(mfs&&mfs.GetComponent<Renderer>())
+		if(mfs&&mfs.renderer)
 		{
-			lowestPointY = mfs.GetComponent<Renderer>().bounds.min.y;
-			highestPointY = mfs.GetComponent<Renderer>().bounds.max.y;
+			lowestPointY = mfs.renderer.bounds.min.y;
+			highestPointY = mfs.renderer.bounds.max.y;
 		}
 		
 		if(mfs_arr.Length>0)
@@ -469,36 +469,36 @@ public class uteRuntimeBuilder : MonoBehaviour {
 			{
 				MeshFilter mf_c = (MeshFilter) mfs_arr[i];
 				
-				if(mf_c&&mf_c.GetComponent<Renderer>())
+				if(mf_c&&mf_c.renderer)
 				{
-					if(mf_c.GetComponent<Renderer>().bounds.min.y<lowestPointY)
+					if(mf_c.renderer.bounds.min.y<lowestPointY)
 					{
-						lowestPointY = mf_c.GetComponent<Renderer>().bounds.min.y;
+						lowestPointY = mf_c.renderer.bounds.min.y;
 					}
 					
-					if(mf_c.GetComponent<Renderer>().bounds.max.y>highestPointY)
+					if(mf_c.renderer.bounds.max.y>highestPointY)
 					{
-						highestPointY = mf_c.GetComponent<Renderer>().bounds.max.y;
+						highestPointY = mf_c.renderer.bounds.max.y;
 					}
 					
-					if(mf_c.GetComponent<Renderer>().bounds.min.x<lowestPointX)
+					if(mf_c.renderer.bounds.min.x<lowestPointX)
 					{
-						lowestPointX = mf_c.GetComponent<Renderer>().bounds.min.x;
+						lowestPointX = mf_c.renderer.bounds.min.x;
 					}
 					
-					if(mf_c.GetComponent<Renderer>().bounds.max.x>highestPointX)
+					if(mf_c.renderer.bounds.max.x>highestPointX)
 					{
-						highestPointX = mf_c.GetComponent<Renderer>().bounds.max.x;
+						highestPointX = mf_c.renderer.bounds.max.x;
 					}
 		
-					if(mf_c.GetComponent<Renderer>().bounds.min.z<lowestPointZ)
+					if(mf_c.renderer.bounds.min.z<lowestPointZ)
 					{
-						lowestPointZ = mf_c.GetComponent<Renderer>().bounds.min.z;
+						lowestPointZ = mf_c.renderer.bounds.min.z;
 					}
 					
-					if(mf_c.GetComponent<Renderer>().bounds.max.z>highestPointZ)
+					if(mf_c.renderer.bounds.max.z>highestPointZ)
 					{
-						highestPointZ = mf_c.GetComponent<Renderer>().bounds.max.z;
+						highestPointZ = mf_c.renderer.bounds.max.z;
 					}
 				}
 			}
@@ -506,8 +506,8 @@ public class uteRuntimeBuilder : MonoBehaviour {
 		
 		if(smfs)
 		{
-			lowestPointY = smfs.GetComponent<Renderer>().bounds.min.y;
-			highestPointY = smfs.GetComponent<Renderer>().bounds.max.y;
+			lowestPointY = smfs.renderer.bounds.min.y;
+			highestPointY = smfs.renderer.bounds.max.y;
 		}
 		
 		if(smfs_arr.Length>0)
@@ -518,34 +518,34 @@ public class uteRuntimeBuilder : MonoBehaviour {
 				
 				if(smfs_c)
 				{
-					if(smfs_c.GetComponent<Renderer>().bounds.min.y<lowestPointY)
+					if(smfs_c.renderer.bounds.min.y<lowestPointY)
 					{
-						lowestPointY = smfs_c.GetComponent<Renderer>().bounds.min.y;
+						lowestPointY = smfs_c.renderer.bounds.min.y;
 					}
 					
-					if(smfs_c.GetComponent<Renderer>().bounds.max.y>highestPointY)
+					if(smfs_c.renderer.bounds.max.y>highestPointY)
 					{
-						highestPointY = smfs_c.GetComponent<Renderer>().bounds.max.y;
+						highestPointY = smfs_c.renderer.bounds.max.y;
 					}
 					
-					if(smfs_c.GetComponent<Renderer>().bounds.min.x<lowestPointX)
+					if(smfs_c.renderer.bounds.min.x<lowestPointX)
 					{
-						lowestPointX = smfs_c.GetComponent<Renderer>().bounds.min.x;
+						lowestPointX = smfs_c.renderer.bounds.min.x;
 					}
 					
-					if(smfs_c.GetComponent<Renderer>().bounds.max.x>highestPointX)
+					if(smfs_c.renderer.bounds.max.x>highestPointX)
 					{
-						highestPointX = smfs_c.GetComponent<Renderer>().bounds.max.x;
+						highestPointX = smfs_c.renderer.bounds.max.x;
 					}
 					
-					if(smfs_c.GetComponent<Renderer>().bounds.min.z<lowestPointZ)
+					if(smfs_c.renderer.bounds.min.z<lowestPointZ)
 					{
-						lowestPointZ = smfs_c.GetComponent<Renderer>().bounds.min.z;
+						lowestPointZ = smfs_c.renderer.bounds.min.z;
 					}
 					
-					if(smfs_c.GetComponent<Renderer>().bounds.max.z>highestPointZ)
+					if(smfs_c.renderer.bounds.max.z>highestPointZ)
 					{
-						highestPointZ = smfs_c.GetComponent<Renderer>().bounds.max.z;
+						highestPointZ = smfs_c.renderer.bounds.max.z;
 					}
 				}
 			}

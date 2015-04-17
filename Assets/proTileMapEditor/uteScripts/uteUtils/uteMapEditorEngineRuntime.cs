@@ -241,17 +241,17 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 					bool collXA = false;
 					bool collYB = false;
 					bool collYA = false;
-    				float sizeX = currentTile.GetComponent<Collider>().bounds.size.x;//*currentTile.transform.localScale.x;
-    				float sizeY = currentTile.GetComponent<Collider>().bounds.size.y;//*currentTile.transform.localScale.y;
-	  				float sizeZ = currentTile.GetComponent<Collider>().bounds.size.z;//*currentTile.transform.localScale.z;
+    				float sizeX = currentTile.collider.bounds.size.x;//*currentTile.transform.localScale.x;
+    				float sizeY = currentTile.collider.bounds.size.y;//*currentTile.transform.localScale.y;
+	  				float sizeZ = currentTile.collider.bounds.size.z;//*currentTile.transform.localScale.z;
     				float centerX = ((float)sizeX)/2.0f;
     				float centerY = ((float)sizeY)/2.0f;
     				float centerZ = ((float)sizeZ)/2.0f;
 					float centerPosX = centerX+(currentTile.transform.position.x-((float)sizeX/2.0f));
 					float centerPosY = centerY+(currentTile.transform.position.y-((float)sizeY/2.0f));
 					float centerPosZ = centerZ+(currentTile.transform.position.z-((float)sizeZ/2.0f));
-					int castSizeX = (int) currentTile.GetComponent<Collider>().bounds.size.x;
-					int castSizeZ = (int) currentTile.GetComponent<Collider>().bounds.size.z;
+					int castSizeX = (int) currentTile.collider.bounds.size.x;
+					int castSizeZ = (int) currentTile.collider.bounds.size.z;
 					int castSizeSide;
 
 					if(castSizeX==castSizeZ)
@@ -307,17 +307,17 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 					float internalOffsetZ = ZERO_F;
 					float internalOffsetY = ZERO_F;
 
-					if(Mathf.Round(currentTile.GetComponent<Collider>().bounds.size.z)%2==0)
+					if(Mathf.Round(currentTile.collider.bounds.size.z)%2==0)
 					{
 						internalOffsetZ = 0.5f;
 					}
 
-					if(Mathf.Round(currentTile.GetComponent<Collider>().bounds.size.x)%2==0)
+					if(Mathf.Round(currentTile.collider.bounds.size.x)%2==0)
 					{
 						internalOffsetX = 0.5f;
 					}
 
-					if(Mathf.Round(currentTile.GetComponent<Collider>().bounds.size.y)%2==0)
+					if(Mathf.Round(currentTile.collider.bounds.size.y)%2==0)
 					{
 						internalOffsetY = 0.5f;
 					}
@@ -325,9 +325,9 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 					float offsetFixX = 0.05f;//*currentTile.transform.localScale.x;
 					float offsetFixZ = 0.05f;//*currentTile.transform.localScale.z;
 					float offsetFixY = 0.05f;//*currentTile.transform.localScale.y;
-					float castPosX = currentTile.GetComponent<Collider>().bounds.center.x;//centerPosX+(currentTile.GetComponent<BoxCollider>().center.x*currentTile.transform.localScale.x);
-					float castPosZ = currentTile.GetComponent<Collider>().bounds.center.z;//centerPosZ+(currentTile.GetComponent<BoxCollider>().center.z*currentTile.transform.localScale.z);
-					float castPosY = currentTile.GetComponent<Collider>().bounds.center.y;//centerPosY+(currentTile.GetComponent<BoxCollider>().center.y*currentTile.transform.localScale.y);
+					float castPosX = currentTile.collider.bounds.center.x;//centerPosX+(currentTile.GetComponent<BoxCollider>().center.x*currentTile.transform.localScale.x);
+					float castPosZ = currentTile.collider.bounds.center.z;//centerPosZ+(currentTile.GetComponent<BoxCollider>().center.z*currentTile.transform.localScale.z);
+					float castPosY = currentTile.collider.bounds.center.y;//centerPosY+(currentTile.GetComponent<BoxCollider>().center.y*currentTile.transform.localScale.y);
 
 					Vector3 castFullPos = new Vector3(castPosX,castPosY,castPosZ);
 					Vector3 checkXA = new Vector3(castPosX+centerX-offsetFixX,castPosY,castPosZ);
@@ -364,37 +364,37 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 						RaycastHit lineHit;
 						if(Physics.Linecast(castFullPos+new Vector3(0,0,offsetFixZ), checkZB, out lineHit))
 						{
-							offsetToMoveZB = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.z)-Mathf.Abs(currentTile.transform.position.z)))-(currentTile.GetComponent<Collider>().bounds.size.z/2.0f)));
+							offsetToMoveZB = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.z)-Mathf.Abs(currentTile.transform.position.z)))-(currentTile.collider.bounds.size.z/2.0f)));
 							collZB = true;
 						}
 
 						if(Physics.Linecast(castFullPos+new Vector3(0,0,-offsetFixZ), checkZA, out lineHit))
 						{
-							offsetToMoveZA = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.z)-Mathf.Abs(currentTile.transform.position.z)))-(currentTile.GetComponent<Collider>().bounds.size.z/2.0f)));
+							offsetToMoveZA = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.z)-Mathf.Abs(currentTile.transform.position.z)))-(currentTile.collider.bounds.size.z/2.0f)));
 							collZA = true;
 						}
 
 						if(Physics.Linecast(castFullPos+new Vector3(0,offsetFixY,0), checkYB, out lineHit))
 						{
-							offsetToMoveYB = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.y)-Mathf.Abs(currentTile.transform.position.y)))-(currentTile.GetComponent<Collider>().bounds.size.y/2.0f)));
+							offsetToMoveYB = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.y)-Mathf.Abs(currentTile.transform.position.y)))-(currentTile.collider.bounds.size.y/2.0f)));
 							collYB = true;
 						}
 
 						if(Physics.Linecast(castFullPos+new Vector3(0,-offsetFixY,0), checkYA, out lineHit))
 						{
-							offsetToMoveYA = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.y)-Mathf.Abs(currentTile.transform.position.y)))-(currentTile.GetComponent<Collider>().bounds.size.y/2.0f)));
+							offsetToMoveYA = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.y)-Mathf.Abs(currentTile.transform.position.y)))-(currentTile.collider.bounds.size.y/2.0f)));
 							collYA = true;
 						}
 
 						if(Physics.Linecast(castFullPos+new Vector3(offsetFixX,0,0), checkXB, out lineHit))
 						{
-							offsetToMoveXB = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.x)-Mathf.Abs(currentTile.transform.position.x)))-(currentTile.GetComponent<Collider>().bounds.size.x/2.0f)));
+							offsetToMoveXB = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.x)-Mathf.Abs(currentTile.transform.position.x)))-(currentTile.collider.bounds.size.x/2.0f)));
 							collXB = true;
 						}
 
 						if(Physics.Linecast(castFullPos+new Vector3(-offsetFixX,0,0), checkXA, out lineHit))
 						{
-							offsetToMoveXA = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.x)-Mathf.Abs(currentTile.transform.position.x)))-(currentTile.GetComponent<Collider>().bounds.size.x/2.0f)));
+							offsetToMoveXA = Mathf.Abs(Mathf.Round((Mathf.Abs(Mathf.Abs(lineHit.point.x)-Mathf.Abs(currentTile.transform.position.x)))-(currentTile.collider.bounds.size.x/2.0f)));
 							collXA = true;
 						}
 
@@ -467,7 +467,7 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 						if(buildHit.normal==Vector3.up)
 						{
 							//Debug.Log("("+buildHit.point.y+"+("+currentTile.collider.bounds.size.y+"/2.0f))-"+currentTile.GetComponent<BoxCollider>().center.y+"0.0000001f");;
-							posY = (buildHit.point.y+(currentTile.GetComponent<Collider>().bounds.size.y/2.0f))-(currentTile.GetComponent<BoxCollider>().center.y*currentTile.transform.localScale.y)+0.000001f;//posY = (Mathf.Round(buildHit.point.y+normalY)+internalOffsetY);
+							posY = (buildHit.point.y+(currentTile.collider.bounds.size.y/2.0f))-(currentTile.GetComponent<BoxCollider>().center.y*currentTile.transform.localScale.y)+0.000001f;//posY = (Mathf.Round(buildHit.point.y+normalY)+internalOffsetY);
 							//Debug.Log(posY);
 						}
 						else
@@ -484,7 +484,7 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 					}
 					else if(yTypeOption.Equals("nosnap"))
 					{
-						posY = buildHit.point.y+(currentTile.GetComponent<Collider>().bounds.size.y/2.0f)-currentTile.GetComponent<BoxCollider>().center.y+0.000001f;
+						posY = buildHit.point.y+(currentTile.collider.bounds.size.y/2.0f)-currentTile.GetComponent<BoxCollider>().center.y+0.000001f;
 					}
 					else if(yTypeOption.Equals("fixed"))
 					{
@@ -515,7 +515,7 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 
 					if(yTypeOption.Equals("auto"))
 					{
-						if(currentTile.GetComponent<Collider>().bounds.size.y<0.011f)
+						if(currentTile.collider.bounds.size.y<0.011f)
 						{
 							addOnTop = 0.002f;
 						}
@@ -771,12 +771,12 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 				if(tileDistanceX!=0.0f)
 				{
 					newTileDistance = tileDistanceX;
-					newDistanceReq = currentTile.GetComponent<Collider>().bounds.size.x;
+					newDistanceReq = currentTile.collider.bounds.size.x;
 				}
 				else if(tileDistanceZ!=0.0f)
 				{
 					newTileDistance = tileDistanceZ;
-					newDistanceReq = currentTile.GetComponent<Collider>().bounds.size.z;
+					newDistanceReq = currentTile.collider.bounds.size.z;
 				}
 				else
 				{
@@ -817,9 +817,9 @@ public class uteMapEditorEngineRuntime : MonoBehaviour {
 		if(currentTile&&goodToGo)
 	 	{
 			newObj.layer = 0;
-			Destroy(newObj.GetComponent<Rigidbody>());
+			Destroy(newObj.rigidbody);
 			Destroy(newObj.GetComponent<uteDetectBuildCollision>());
-			newObj.GetComponent<Collider>().isTrigger = false;
+			newObj.collider.isTrigger = false;
 		}
 
 		if(goodToGo)
